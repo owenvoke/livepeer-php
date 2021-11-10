@@ -2,7 +2,7 @@
 
 use OwenVoke\Livepeer\Api\Stream;
 
-beforeEach(fn() => $this->apiClass = Stream::class);
+beforeEach(fn () => $this->apiClass = Stream::class);
 
 it('should get a list of streams', function () {
     $expectedArray = [[

@@ -2,7 +2,7 @@
 
 use OwenVoke\Livepeer\Api\Session;
 
-beforeEach(fn() => $this->apiClass = Session::class);
+beforeEach(fn () => $this->apiClass = Session::class);
 
 it('should get a list of sessions', function () {
     $expectedArray = [[
