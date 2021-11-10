@@ -10,6 +10,7 @@ use Http\Client\Common\Plugin\HeaderDefaultsPlugin;
 use Http\Client\Common\Plugin\RedirectPlugin;
 use Http\Discovery\Psr17FactoryDiscovery;
 use OwenVoke\Livepeer\Api\AbstractApi;
+use OwenVoke\Livepeer\Api\Stream;
 use OwenVoke\Livepeer\Exception\BadMethodCallException;
 use OwenVoke\Livepeer\Exception\InvalidArgumentException;
 use OwenVoke\Livepeer\HttpClient\Builder;
@@ -17,6 +18,10 @@ use OwenVoke\Livepeer\HttpClient\Plugin\Authentication;
 use OwenVoke\Livepeer\HttpClient\Plugin\PathPrepend;
 use Psr\Http\Client\ClientInterface;
 
+/**
+ * @method Stream stream()
+ * @method Stream streams()
+ */
 final class Client
 {
     public const AUTH_ACCESS_TOKEN = 'access_token_header';
@@ -53,6 +58,10 @@ final class Client
     public function api(string $name): AbstractApi
     {
         switch ($name) {
+            case 'stream':
+            case 'streams':
+                return new Stream($this);
+
             default:
                 throw new InvalidArgumentException(sprintf('Undefined api instance called: "%s"', $name));
         }
