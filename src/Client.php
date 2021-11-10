@@ -10,6 +10,7 @@ use Http\Client\Common\Plugin\HeaderDefaultsPlugin;
 use Http\Client\Common\Plugin\RedirectPlugin;
 use Http\Discovery\Psr17FactoryDiscovery;
 use OwenVoke\Livepeer\Api\AbstractApi;
+use OwenVoke\Livepeer\Api\Session;
 use OwenVoke\Livepeer\Api\Stream;
 use OwenVoke\Livepeer\Exception\BadMethodCallException;
 use OwenVoke\Livepeer\Exception\InvalidArgumentException;
@@ -19,6 +20,8 @@ use OwenVoke\Livepeer\HttpClient\Plugin\PathPrepend;
 use Psr\Http\Client\ClientInterface;
 
 /**
+ * @method Session session()
+ * @method Session sessions()
  * @method Stream stream()
  * @method Stream streams()
  */
@@ -58,6 +61,10 @@ final class Client
     public function api(string $name): AbstractApi
     {
         switch ($name) {
+            case 'session':
+            case 'sessions':
+                return new Session($this);
+
             case 'stream':
             case 'streams':
                 return new Stream($this);
