@@ -2,7 +2,7 @@
 
 use OwenVoke\Livepeer\Api\Ingest;
 
-beforeEach(fn() => $this->apiClass = Ingest::class);
+beforeEach(fn () => $this->apiClass = Ingest::class);
 
 it('should get a list of ingest data centers', function () {
     $expectedArray = [[
